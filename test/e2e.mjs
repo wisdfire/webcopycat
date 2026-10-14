@@ -63,7 +63,7 @@ try {
     assert.match(copied, /BODY_START/, '본문 시작이 포함되어야 함');
     assert.match(copied, /BODY_END/, '본문 끝이 포함되어야 함');
     assert.match(copied, /추가됩니다\.\n- 신규 보스/, '목록은 "- "로 시작하고 빈 줄 없이 이어져야 함');
-    for (const noise of ['NAV_', 'SIDEBAR_', 'COMMENT_', 'FOOTER_']) {
+    for (const noise of ['NAV_', 'SIDEBAR_', 'COMMENT_', 'FOOTER_', 'HIDDEN_']) {
       assert.ok(!copied.includes(noise), `${noise} 잡음이 포함되면 안 됨`);
     }
     assert.ok(!/\n{3,}/.test(copied), '빈 줄이 연속되면 안 됨');

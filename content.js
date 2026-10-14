@@ -101,6 +101,27 @@
   }
 
   /**
+   * 화면에 보이지 않는 요소를 제거한 문서 복제본을 만든다.
+   * 복제본에는 스타일 계산 정보가 없어서, 실제 문서에서 숨김 여부를 판단한 뒤
+   * 같은 순서(querySelectorAll 순서는 원본과 복제본이 동일)의 복제본 요소를 지운다.
+   * 목적: 페이지가 CSS로 숨겨 둔 텍스트가 사용자 모르게 클립보드에 섞이는 것을 방지
+   * @returns {Document} 보이는 요소만 남은 복제 문서
+   */
+  function cloneVisibleDocument() {
+    const clone = document.cloneNode(true);
+    const liveElements = document.querySelectorAll('body *');
+    const clonedElements = clone.querySelectorAll('body *');
+    const hidden = [];
+    liveElements.forEach((el, i) => {
+      // display:none, visibility:hidden, opacity:0 인 요소 (조상이 숨겨진 경우 포함)
+      // ponytail: 화면 밖 배치·0px 크기·글자색=배경색 같은 숨김은 못 잡음, 문제 되면 getBoundingClientRect 검사 추가
+      if (!el.checkVisibility({ visibilityProperty: true, opacityProperty: true })) hidden.push(clonedElements[i]);
+    });
+    hidden.forEach((el) => el.remove());
+    return clone;
+  }
+
+  /**
    * Readability로 본문을 자동 추출한다.
    * Readability는 넘겨받은 문서를 변형하므로 반드시 복제본에 실행한다.
    * @returns {string|null} 본문 텍스트, 추출 실패 시 null
@@ -111,7 +132,7 @@
 
     // charThreshold: 본문 판정 최소 글자 수 (기본 500).
     // 한글은 글자당 정보량이 많아 짧은 게시물이 기준 미달 → 댓글까지 포함되는 문제가 있어 낮춘다.
-    const article = new Readability(document.cloneNode(true), { charThreshold: 100 }).parse();
+    const article = new Readability(cloneVisibleDocument(), { charThreshold: 100 }).parse();
     if (!article || !article.content) return null;
 
     // Readability 결과 HTML을 DOMParser로 파싱 (스크립트가 실행되지 않는 안전한 방식)
