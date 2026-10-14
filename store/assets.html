@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<!-- 웹스토어 이미지 원본. scripts/render-assets.mjs가 각 섹션(#promo, #marquee, #compare)을 PNG로 렌더링한다. -->
+<style>
+  :root { --brand: #4F46E5; --brand-dark: #3730A3; --ink: #111827; --muted: #6B7280; --ok: #16A34A; --bad: #DC2626; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Apple SD Gothic Neo", "Pretendard", "Malgun Gothic", sans-serif; color: var(--ink); }
+  .canvas { position: relative; overflow: hidden; background: linear-gradient(135deg, #1E1B4B, #312E81 60%, #3730A3); color: #fff; display: flex; align-items: center; }
+  .canvas::after { content: ""; position: absolute; right: -120px; bottom: -160px; width: 520px; height: 520px; border-radius: 50%; background: rgba(255,255,255,.07); }
+  .logo { flex: none; filter: drop-shadow(0 10px 24px rgba(0,0,0,.25)); }
+  .name { font-weight: 800; letter-spacing: -0.02em; }
+  .tag { opacity: .9; font-weight: 500; }
+  .pill { display: inline-block; border: 1.5px solid rgba(255,255,255,.5); border-radius: 999px; padding: 4px 14px; margin-right: 8px; font-size: 18px; }
+
+  /* 440×280 작은 프로모션 타일 */
+  #promo { width: 440px; height: 280px; padding: 0 34px; gap: 22px; }
+  #promo .logo { width: 96px; height: 96px; }
+  #promo .name { font-size: 34px; }
+  #promo .tag { font-size: 18px; margin-top: 6px; line-height: 1.45; }
+
+  /* 1400×560 마키 프로모션 타일 */
+  #marquee { width: 1400px; height: 560px; padding: 0 110px; gap: 60px; }
+  #marquee .logo { width: 220px; height: 220px; }
+  #marquee .name { font-size: 76px; }
+  #marquee .tag { font-size: 34px; margin: 10px 0 28px; }
+
+  /* 1280×800 비교 스크린샷 */
+  #compare { width: 1280px; height: 800px; background: #F3F4F6; padding: 52px 64px; }
+  #compare h2 { margin: 0; font-size: 38px; letter-spacing: -0.02em; }
+  #compare h2 em { font-style: normal; color: var(--brand); }
+  #compare .sub { color: var(--muted); font-size: 20px; margin: 10px 0 32px; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .card { background: #fff; border-radius: 16px; padding: 22px 26px; box-shadow: 0 6px 20px rgba(17,24,39,.07); height: 470px; overflow: hidden; }
+  .card h3 { margin: 0 0 14px; font-size: 20px; display: flex; align-items: center; gap: 10px; }
+  .badge { font-size: 14px; color: #fff; border-radius: 6px; padding: 3px 10px; }
+  .card pre { margin: 0; font-size: 17px; line-height: 1.75; font-family: inherit; white-space: pre-wrap; }
+  .noise { color: var(--bad); text-decoration: line-through; opacity: .75; }
+  .keys { margin-top: 26px; display: flex; gap: 14px; font-size: 18px; color: var(--muted); }
+  .keys span { background: #fff; border-radius: 10px; padding: 10px 16px; box-shadow: 0 2px 8px rgba(17,24,39,.06); }
+  .keys b { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<section id="promo" class="canvas">
+  <img class="logo" src="../icons/icon.svg" alt="">
+  <div>
+    <div class="name">WebCopyCat</div>
+    <div class="tag">게시물 본문만<br>원클릭 복사</div>
+  </div>
+</section>
+
+<section id="marquee" class="canvas">
+  <img class="logo" src="../icons/icon.svg" alt="">
+  <div>
+    <div class="name">WebCopyCat</div>
+    <div class="tag">메뉴·댓글·광고 없이, 게시물 본문만 원클릭 복사</div>
+    <span class="pill">툴바 아이콘</span><span class="pill">우클릭 메뉴</span><span class="pill">Alt+Shift+C</span>
+  </div>
+</section>
+
+<section id="compare">
+  <h2>전체 선택은 그만, <em>본문만</em> 복사하세요</h2>
+  <div class="sub">드래그할 필요 없이 클릭 한 번이면 게시물 본문이 클립보드에 들어갑니다.</div>
+  <div class="cols">
+    <div class="card">
+      <h3><span class="badge" style="background:var(--bad)">Before</span> Ctrl+A 전체 선택 복사</h3>
+<pre><span class="noise">예시 게임 커뮤니티 공지사항 자유게시판 공략게시판
+이벤트 고객센터 로그인 회원가입
+전체글보기 공지사항 패치노트 자유게시판 질문게시판</span>
+10/14(화) 업데이트 안내
+<span class="noise">운영자 · 2026.10.14 · 조회 12,345 · 추천 · 공유 · 신고</span>
+안녕하세요, 모험가 여러분. 10월 14일 업데이트 내용을...
+1. 신규 콘텐츠
+- 신규 지역 「바람의 협곡」이 추가됩니다.
+<span class="noise">댓글 128 · 모험가123: 보스 기대됩니다!
+궁수유저: 궁수 너프 너무하네요ㅠ
+이전글 · 다음글 · 목록 · 인기글 TOP 10
+© 예시 게임 회사. All rights reserved.</span></pre>
+    </div>
+    <div class="card">
+      <h3><span class="badge" style="background:var(--ok)">After</span> WebCopyCat 복사</h3>
+<pre>안녕하세요, 모험가 여러분. 10월 14일 업데이트 내용을 안내해 드립니다.
+
+1. 신규 콘텐츠
+
+- 신규 지역 「바람의 협곡」이 추가됩니다.
+- 신규 보스 「폭풍의 군주」가 등장합니다.
+- 협곡 전용 장비 세트 4종이 추가됩니다.
+
+2. 밸런스 조정
+
+- 전사 계열의 기본 공격 피해량이 8% 증가합니다.
+- 마법사 계열 「화염 폭발」의 재사용 대기시간이 감소합니다.</pre>
+    </div>
+  </div>
+  <div class="keys"><span>실행 방법 <b>툴바 아이콘 클릭</b></span><span><b>우클릭 → 본문 복사</b></span><span><b>Alt + Shift + C</b></span></div>
+</section>
+
+</body>
+</html>

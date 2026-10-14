@@ -1,0 +1,16 @@
+{
+  "name": "webcopycat",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "클릭 한 번으로 게시물 본문만 복사하는 Chrome 확장프로그램",
+  "license": "MIT",
+  "scripts": {
+    "test": "node test/e2e.mjs",
+    "zip": "mkdir -p dist && rm -f dist/webcopycat.zip && zip -r dist/webcopycat.zip manifest.json background.js content.js offscreen.html offscreen.js lib icons/*.png",
+    "assets": "node scripts/render-assets.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.56.1"
+  }
+}

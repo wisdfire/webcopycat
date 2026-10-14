@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "WebCopyCat - 게시물 본문 원클릭 복사",
+  "short_name": "WebCopyCat",
+  "version": "0.1.0",
+  "description": "클릭 한 번으로 게시물 본문만 텍스트로 복사합니다. 메뉴·댓글·광고 없이 본문만.",
+  "minimum_chrome_version": "116",
+  "permissions": ["activeTab", "scripting", "contextMenus", "offscreen", "clipboardWrite"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "본문 복사 (Alt+Shift+C)",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": { "default": "Alt+Shift+C" },
+      "description": "본문 복사"
+    }
+  }
+}

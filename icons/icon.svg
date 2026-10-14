@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- 배경 -->
+  <rect width="128" height="128" rx="28" fill="#4F46E5"/>
+  <!-- 뒤쪽 문서 (복사 원본) -->
+  <rect x="22" y="30" width="54" height="62" rx="11" fill="#fff" fill-opacity="0.4"/>
+  <!-- 앞쪽 문서 + 고양이 귀 -->
+  <path d="M50 66 L52 34 L70 50 L86 50 L104 34 L106 66 L106 96 Q106 106 96 106 L60 106 Q50 106 50 96 Z" fill="#fff" stroke="#fff" stroke-width="4" stroke-linejoin="round"/>
+  <!-- 눈 -->
+  <ellipse cx="68" cy="76" rx="5" ry="6.5" fill="#4F46E5"/>
+  <ellipse cx="88" cy="76" rx="5" ry="6.5" fill="#4F46E5"/>
+  <!-- 코 -->
+  <path d="M74.5 88 L81.5 88 L78 92 Z" fill="#F472B6"/>
+</svg>
